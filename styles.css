@@ -1,65 +1,95 @@
-/* --- ESTILOS GENERALES DE LA PÁGINA --- */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+/* QNet Learning - Paleta: azul oscuro + cian suave + blanco */
+:root{
+  --bg:#071226;
+  --card: rgba(255,255,255,0.03);
+  --muted:#94a6bb;
+  --accent:#009cff;   /* azul eléctrico */
+  --accent-2:#61f0e0; /* cian suave */
+  --text:#eaf7ff;
 }
 
-/* --- CHATBOT NUEVO --- */
-
-#chatbot-bubble {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 55px;
-    height: 55px;
-    background: #007bff; /* azul eléctrico */
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 28px;
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(0, 120, 255, 0.7);
-    z-index: 9999;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  background: linear-gradient(180deg, #031027 0%, var(--bg) 100%);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
 }
 
-#chatbot-box {
-    position: fixed;
-    bottom: 90px;
-    right: 20px;
-    width: 300px;
-    height: 380px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.25);
-    display: none;
-    flex-direction: column;
-    overflow: hidden;
-    z-index: 9999;
-}
+/* Layout */
+.container{max-width:980px; margin: -30px auto 40px; padding: 0 16px}
 
-#chatbot-header {
-    background: #007bff;
-    color: white;
-    padding: 12px;
-    text-align: center;
-    font-weight: bold;
-}
+/* HERO */
+.hero{padding:36px 16px; text-align:center}
+.hero-inner{max-width:1000px; margin:0 auto}
+.hero h1{color:var(--accent); margin:0; font-size:32px}
+.lead{color:var(--muted); margin-top:6px}
+.media-wrap{margin-top:18px}
+.hero-video{width:100%; max-height:300px; border-radius:10px; box-shadow:0 12px 40px rgba(0,156,255,0.12); object-fit:cover}
 
-#chatbot-messages {
-    flex: 1;
-    padding: 10px;
-    overflow-y: auto;
-    font-size: 14px;
-}
+/* CARDS */
+.card{background:var(--card); border-radius:12px; padding:18px; margin-bottom:18px; box-shadow:0 8px 30px rgba(2,6,23,0.25)}
+.muted{color:var(--muted); line-height:1.5}
+.byline{color:var(--accent-2); text-align:center; font-weight:600}
 
-#chatbot-input {
-    border: none;
-    padding: 10px;
-    border-top: 1px solid #eee;
-    width: 100%;
-    font-size: 14px;
-    outline: none;
+/* QUIZ */
+.start-panel input[type="text"]{
+  width:100%; padding:12px 14px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); background:rgba(0,0,0,0.25); color:var(--text);
 }
+.controls{display:flex; gap:10px; align-items:center; justify-content:center; margin-top:12px}
+.controls label{color:var(--muted)}
+.controls select{padding:8px; border-radius:8px; background:rgba(0,0,0,0.2); color:var(--text); border:1px solid rgba(255,255,255,0.03)}
+#startBtn{background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#00121a; padding:10px 14px; border-radius:10px; border:none; cursor:pointer; font-weight:700}
+.hidden{display:none}
+
+/* Question area */
+.progress{color:var(--muted); margin-bottom:8px}
+.question{font-size:18px; color:#e8fbff; margin-bottom:14px}
+.options button{
+  display:block; width:100%; text-align:left; padding:12px; margin-bottom:10px; border-radius:10px; border:1px solid rgba(255,255,255,0.02);
+  background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.006)); color:var(--text); cursor:pointer;
+  transition: transform .12s ease, box-shadow .12s;
+}
+.options button:hover{transform:translateY(-3px); box-shadow:0 12px 30px rgba(0,156,255,0.08)}
+.options button.correct{ background: linear-gradient(90deg,#10b981,var(--accent)); color:#00121a }
+.options button.wrong{ background: linear-gradient(90deg,#ef4444,#fb923c); color:white }
+
+/* Nav */
+.nav{display:flex; justify-content:flex-end}
+#nextBtn{background:transparent; border:1px solid rgba(255,255,255,0.04); padding:10px 14px; border-radius:8px; color:var(--muted); cursor:pointer}
+
+/* Result */
+.result-panel .detail{margin:12px 0; padding:12px; background:rgba(255,255,255,0.02); border-radius:8px; color:var(--muted)}
+
+/* FOOTER */
+.site-footer{text-align:center; padding:14px; color:var(--muted)}
+
+/* CHATBOT: small, apart, non-intrusive */
+#qnet-chat-bubble{
+  position:fixed; right:18px; bottom:18px;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-size:24px; color:#00121a; cursor:pointer; box-shadow:0 10px 36px rgba(0,156,255,0.14); z-index:9999;
+}
+#qnet-chat-window{
+  position:fixed; right:18px; bottom:86px; width:320px; max-width:92vw; border-radius:12px; overflow:hidden;
+  background:#ffffff; color:#00121a; box-shadow:0 18px 50px rgba(2,6,23,0.3); z-index:9999;
+  display:flex; flex-direction:column;
+}
+.qnet-chat-header{background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#00121a; padding:10px; font-weight:700; display:flex; justify-content:space-between; align-items:center}
+.qnet-messages{padding:12px; height:220px; overflow:auto; background:#f7fbfc}
+.qnet-messages p{margin:8px 0; padding:8px 10px; border-radius:8px}
+.qnet-messages .user{background:linear-gradient(90deg,rgba(0,156,255,0.08),rgba(97,240,224,0.03)); margin-left:auto}
+.qnet-messages .bot{background:#eef7fb}
+.qnet-input-row{display:flex; gap:8px; padding:10px; border-top:1px solid #eee}
+.qnet-input-row input{flex:1; padding:10px; border-radius:8px; border:1px solid #e6eef3}
+.qnet-input-row button{background:var(--accent); border:none; color:#00121a; padding:8px 10px; border-radius:8px; cursor:pointer}
+
+/* Responsive */
+@media (max-width:600px){
+  .hero h1{font-size:22px}
+  .hero-video{max-height:170px}
+  #qnet-chat-window{right:12px; left:12px; width:auto; bottom:80px}
+    }
