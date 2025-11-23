@@ -1,93 +1,186 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>QNet Learning — Redes Cuánticas</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <title>Actividad de Hardware y Redes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f5;
+            padding: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #1f3c88;
+        }
+        #intro, #quiz, #chatbot, #autor {
+            width: 80%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+        input {
+            width: 90%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        #resultado {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        #chat {
+            height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background: #f7f7f7;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .user {
+            text-align: right;
+            background: #91c3ff;
+            padding: 6px;
+            border-radius: 6px;
+            margin: 5px;
+        }
+        .bot {
+            text-align: left;
+            background: #a8f3c5;
+            padding: 6px;
+            border-radius: 6px;
+            margin: 5px;
+        }
+        #autor-title {
+            text-align: center;
+            font-weight: bold;
+            color: #555;
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="hero-inner">
-      <h1>QNet Learning</h1>
-      <p class="lead">Redes cuánticas y comunicaciones del futuro — aprende lo esencial.</p>
-      <div class="media-wrap">
-        <video class="hero-video" autoplay muted loop playsinline>
-          <source src="/mnt/data/Screenrecorder-2025-11-22-17-37-01-138.mp4" type="video/mp4">
-          <!-- Si vas a publicar en GitHub Pages, sube el mp4 al repo y cambia la ruta por ./assets/video.mp4 -->
-        </video>
-      </div>
-    </div>
-  </header>
+<h1>Actividad de Hardware y Redes</h1>
 
-  <main class="container">
+<!-- INTRODUCCIÓN -->
+<div id="intro">
+    <h2>Introducción</h2>
+    <p>
+        El hardware corresponde a las partes físicas de un computador, como la CPU, la memoria RAM,
+        el almacenamiento y la tarjeta madre. Estos componentes permiten procesar información, ejecutar
+        programas y almacenar datos.
+    </p>
 
-    <section class="card intro">
-      <h2>Introducción</h2>
-      <p>
-        Las redes cuánticas utilizan fenómenos como la superposición y el entrelazamiento para transmitir y procesar información
-        de maneras imposibles para las redes clásicas. Son la base de comunicaciones ultra-seguras y nuevos modelos de computación distribuida.
-      </p>
-      <p class="muted">Este recurso incluye una explicación breve, un cuestionario interactivo de 10 preguntas y un asistente sencillo para responder dudas.</p>
-    </section>
+    <p>
+        Las redes permiten la comunicación entre varios dispositivos. Para ello se utilizan equipos
+        como el router, que dirige el tráfico entre redes; el switch, que conecta dispositivos dentro de
+        una red local; y el punto de acceso, que permite la conexión inalámbrica. Cada dispositivo recibe
+        una dirección IP, la cual lo identifica dentro de la red.
+    </p>
+</div>
 
-    <section class="card author">
-      <p class="byline">Diseñado por el profesional <strong>Javier</strong></p>
-    </section>
+<!-- PRESENTACIÓN -->
+<div id="autor">
+    <div id="autor-title">Creado por el profesional Javier Ospino</div>
+</div>
 
-    <section class="card quiz">
-      <h2>Cuestionario: Pon a prueba tus conocimientos</h2>
+<!-- CUESTIONARIO -->
+<div id="quiz">
+    <h2>Cuestionario</h2>
 
-      <div id="startPanel" class="start-panel">
-        <input id="studentName" type="text" placeholder="Ingresa tu nombre" />
-        <div class="controls">
-          <label for="numQ">Preguntas:</label>
-          <select id="numQ"><option value="10" selected>10</option><option value="5">5</option></select>
-          <button id="startBtn">Iniciar</button>
-        </div>
-      </div>
+    <p>1. ¿Qué es el hardware dentro de un sistema informático?</p>
+    <input id="p1" placeholder="Escribe tu respuesta...">
 
-      <div id="quizPanel" class="quiz-panel hidden" aria-live="polite">
-        <div class="progress">Pregunta <span id="qIndex">1</span> / <span id="qTotal">10</span></div>
-        <h3 id="qText" class="question"></h3>
-        <div id="options" class="options" role="list"></div>
-        <div class="nav">
-          <button id="nextBtn">Siguiente</button>
-        </div>
-      </div>
+    <p>2. ¿Qué dispositivo dirige el tráfico entre diferentes redes?</p>
+    <input id="p2" placeholder="Escribe tu respuesta...">
 
-      <div id="resultPanel" class="result-panel hidden">
-        <h3>Resultados</h3>
-        <p id="scoreText"></p>
-        <div id="breakdown"></div>
-        <button id="retryBtn">Volver a intentar</button>
-      </div>
-    </section>
+    <p>3. ¿Qué componente almacena datos de manera permanente?</p>
+    <input id="p3" placeholder="Escribe tu respuesta...">
 
-  </main>
+    <p>4. ¿Qué dispositivo conecta varios equipos dentro de una red local?</p>
+    <input id="p4" placeholder="Escribe tu respuesta...">
 
-  <!-- CHATBOT SIMPLE (ICONO 🌐) -->
-  <div id="qnet-chat-bubble" aria-hidden="false" title="Abrir asistente">🌐</div>
+    <button onclick="calificar()">Calificar</button>
 
-  <div id="qnet-chat-window" class="hidden" role="dialog" aria-label="Asistente QNet">
-    <header class="qnet-chat-header">
-      <span>QNet Helper</span>
-      <button id="qnet-close" aria-label="Cerrar chat">✕</button>
-    </header>
-    <div id="qnet-messages" class="qnet-messages" role="log" aria-live="polite"></div>
-    <div class="qnet-input-row">
-      <input id="qnet-input" type="text" placeholder="Pregunta sobre redes cuánticas..." />
-      <button id="qnet-send">Enviar</button>
-    </div>
-  </div>
+    <p id="resultado"></p>
+</div>
 
-  <footer class="site-footer">
-    <small>QNet Learning — Proyecto educativo. © Diseñado por Javier</small>
-  </footer>
+<!-- CHATBOT -->
+<div id="chatbot">
+    <h2>Chatbot de Hardware y Redes</h2>
 
-  <script src="script.js"></script>
-  <script src="chatbot.js"></script>
+    <div id="chat"></div>
+
+    <input id="userInput" placeholder="Pregúntame algo..." 
+           onkeydown="if(event.key === 'Enter'){enviarMensaje()}">
+</div>
+
+<script>
+// --- CALIFICACIÓN DEL CUESTIONARIO ---
+function calificar() {
+    let p1 = document.getElementById("p1").value.toLowerCase();
+    let p2 = document.getElementById("p2").value.toLowerCase();
+    let p3 = document.getElementById("p3").value.toLowerCase();
+    let p4 = document.getElementById("p4").value.toLowerCase();
+
+    let puntos = 0;
+
+    if (p1.includes("partes físicas") || p1.includes("componentes físicos")) puntos++;
+    if (p2.includes("router")) puntos++;
+    if (p3.includes("ssd") || p3.includes("hdd") || p3.includes("disco")) puntos++;
+    if (p4.includes("switch")) puntos++;
+
+    document.getElementById("resultado").innerHTML = 
+        "Tu puntaje es: <strong>" + puntos + "/4</strong>";
+}
+
+// --- CHATBOT ---
+const respuestas = {
+    "hardware": "El hardware son las partes físicas del computador.",
+    "cpu": "La CPU es el componente encargado de procesar la información.",
+    "ram": "La memoria RAM guarda datos temporales de los programas en uso.",
+    "router": "El router dirige el tráfico entre varias redes.",
+    "switch": "El switch conecta dispositivos dentro de una red local.",
+    "ip": "La IP es una dirección que identifica un dispositivo dentro de una red.",
+    "red": "Una red es un conjunto de dispositivos que comparten información.",
+    "almacenamiento": "El almacenamiento permanente puede ser SSD o HDD."
+};
+
+function enviarMensaje() {
+    let input = document.getElementById("userInput");
+    let mensaje = input.value.trim();
+    if (mensaje === "") return;
+
+    agregarMensaje(mensaje, "user");
+
+    let respuesta = "No tengo información sobre eso. Prueba con: hardware, CPU, router, switch, IP...";
+
+    for (let key in respuestas) {
+        if (mensaje.toLowerCase().includes(key)) {
+            respuesta = respuestas[key];
+        }
+    }
+
+    setTimeout(() => agregarMensaje(respuesta, "bot"), 400);
+
+    input.value = "";
+}
+
+function agregarMensaje(texto, tipo) {
+    let chat = document.getElementById("chat");
+    let div = document.createElement("div");
+    div.className = tipo;
+    div.textContent = texto;
+    chat.appendChild(div);
+    chat.scrollTop = chat.scrollHeight;
+}
+</script>
+
 </body>
 </html>
