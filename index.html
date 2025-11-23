@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BioCircuit Learning — Hardware Bioinspirado</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>BioCircuit Learning</h1>
+      <p class="tag">Hardware bio-inspirado y redes biocircuitales — laboratorio educativo</p>
+      <div class="hero-media">
+        <!-- Video hero: ruta local subida por ti -->
+        <video class="hero-video" autoplay muted loop playsinline>
+          <source src="/mnt/data/Screenrecorder-2025-11-22-17-37-01-138.mp4" type="video/mp4">
+          <!-- Si no se carga el video, se muestra la imagen alternativa -->
+          Tu navegador no soporta video.
+        </video>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main container">
+
+    <!-- INTRO -->
+    <section class="card intro">
+      <h2>Introducción</h2>
+      <p>
+        Los sistemas bioinspirados (hardware que imita procesos biológicos) combinan arquitectura física y redes 
+        que funcionan similar a tejidos neuronales. Estos dispositivos y redes permiten soluciones eficientes en 
+        energía y procesamiento para tareas de reconocimiento, control y robótica.
+      </p>
+      <p class="muted">
+        Este recurso ofrece una breve explicación, un cuestionario interactivo de 10 preguntas y un asistente (chatbot) 
+        que responde dudas técnicas sobre componentes y redes biocircuitales.
+      </p>
+    </section>
+
+    <!-- AUTHOR -->
+    <section class="card author">
+      <p class="byline">Diseñado por el profesional <strong>Javier</strong></p>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="card quiz">
+      <h2>Cuestionario: Comprueba tus conocimientos</h2>
+
+      <div id="startPanel" class="start-panel">
+        <input id="studentName" type="text" placeholder="Ingresa tu nombre" aria-label="Nombre del estudiante">
+        <div class="controls">
+          <label for="numQ">Preguntas:</label>
+          <select id="numQ"><option value="10" selected>10</option><option value="5">5</option></select>
+          <button id="startBtn">Iniciar</button>
+        </div>
+      </div>
+
+      <div id="quizPanel" class="quiz-panel hidden" aria-live="polite">
+        <div class="progress">Pregunta <span id="qIndex">1</span> / <span id="qTotal">10</span></div>
+        <h3 id="qText" class="question"></h3>
+        <div id="options" class="options"></div>
+        <div class="nav">
+          <button id="nextBtn">Siguiente</button>
+        </div>
+      </div>
+
+      <div id="resultPanel" class="result-panel hidden">
+        <h3>Resultados</h3>
+        <p id="scoreText"></p>
+        <div id="breakdown"></div>
+        <button id="retryBtn">Volver a intentar</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- CHATBOT (FUTURISTA) -->
+  <div id="chatToggle" class="chat-toggle" aria-hidden="false">🤖</div>
+  <aside id="chatBox" class="chatbox hidden" aria-hidden="true">
+    <header class="chat-header">
+      <div>BioCircuit Helper</div>
+      <button id="closeChat" class="close">✕</button>
+    </header>
+    <main id="chatMessages" class="chat-messages" role="log" aria-live="polite"></main>
+    <footer class="chat-input">
+      <input id="chatInput" type="text" placeholder="Pregúntame sobre sensores, memristores, topologías..." />
+      <button id="chatSend">Enviar</button>
+    </footer>
+  </aside>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <small>BioCircuit Learning — Proyecto educativo (diseño exclusivo). © Diseñado por el profesional Javier</small>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+        </html>
