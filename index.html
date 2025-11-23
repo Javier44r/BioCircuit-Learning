@@ -3,28 +3,34 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>BioCircuit Learning — Hardware Bioinspirado</title>
+  <title>QNet Learning — Redes Cuánticas</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
+  <!-- HERO -->
   <header class="hero">
-    <div class="hero-content">
-      <h1>BioCircuit Learning</h1>
-      <p class="tag">Hardware bio-inspirado y redes biocircuitales</p>
-      <div class="hero-media">
+    <div class="hero-inner">
+      <h1>QNet Learning</h1>
+      <p class="lead">Redes cuánticas y comunicaciones del futuro — aprende lo esencial.</p>
+      <div class="media-wrap">
         <video class="hero-video" autoplay muted loop playsinline>
           <source src="/mnt/data/Screenrecorder-2025-11-22-17-37-01-138.mp4" type="video/mp4">
+          <!-- Si vas a publicar en GitHub Pages, sube el mp4 al repo y cambia la ruta por ./assets/video.mp4 -->
         </video>
       </div>
     </div>
   </header>
 
-  <main class="main container">
+  <main class="container">
+
     <section class="card intro">
       <h2>Introducción</h2>
-      <p>Los sistemas bioinspirados combinan hardware y redes que imitan procesos neuronales para resolver problemas de forma eficiente.</p>
-      <p class="muted">Este recurso te permite aprender, poner a prueba tus conocimientos con un cuestionario y consultar dudas con un asistente.</p>
+      <p>
+        Las redes cuánticas utilizan fenómenos como la superposición y el entrelazamiento para transmitir y procesar información
+        de maneras imposibles para las redes clásicas. Son la base de comunicaciones ultra-seguras y nuevos modelos de computación distribuida.
+      </p>
+      <p class="muted">Este recurso incluye una explicación breve, un cuestionario interactivo de 10 preguntas y un asistente sencillo para responder dudas.</p>
     </section>
 
     <section class="card author">
@@ -32,20 +38,21 @@
     </section>
 
     <section class="card quiz">
-      <h2>Cuestionario</h2>
+      <h2>Cuestionario: Pon a prueba tus conocimientos</h2>
+
       <div id="startPanel" class="start-panel">
         <input id="studentName" type="text" placeholder="Ingresa tu nombre" />
         <div class="controls">
           <label for="numQ">Preguntas:</label>
-          <select id="numQ"><option value="10">10</option><option value="5">5</option></select>
+          <select id="numQ"><option value="10" selected>10</option><option value="5">5</option></select>
           <button id="startBtn">Iniciar</button>
         </div>
       </div>
 
-      <div id="quizPanel" class="quiz-panel hidden">
+      <div id="quizPanel" class="quiz-panel hidden" aria-live="polite">
         <div class="progress">Pregunta <span id="qIndex">1</span> / <span id="qTotal">10</span></div>
         <h3 id="qText" class="question"></h3>
-        <div id="options" class="options"></div>
+        <div id="options" class="options" role="list"></div>
         <div class="nav">
           <button id="nextBtn">Siguiente</button>
         </div>
@@ -58,33 +65,29 @@
         <button id="retryBtn">Volver a intentar</button>
       </div>
     </section>
+
   </main>
 
-  <div class="chatbot-container">
-    <div class="chatbot-box" id="chatBox">
-      <header class="chat-header">
-        <div>BioCircuit Helper</div>
-        <button id="closeChat" class="close">✕</button>
-      </header>
-      <main id="chatMessages" class="chat-messages" role="log" aria-live="polite"></main>
-      <footer class="chat-input">
-        <input id="chatInput" type="text" placeholder="Pregunta algo..." />
-        <button id="chatSend">Enviar</button>
-      </footer>
+  <!-- CHATBOT SIMPLE (ICONO 🌐) -->
+  <div id="qnet-chat-bubble" aria-hidden="false" title="Abrir asistente">🌐</div>
+
+  <div id="qnet-chat-window" class="hidden" role="dialog" aria-label="Asistente QNet">
+    <header class="qnet-chat-header">
+      <span>QNet Helper</span>
+      <button id="qnet-close" aria-label="Cerrar chat">✕</button>
+    </header>
+    <div id="qnet-messages" class="qnet-messages" role="log" aria-live="polite"></div>
+    <div class="qnet-input-row">
+      <input id="qnet-input" type="text" placeholder="Pregunta sobre redes cuánticas..." />
+      <button id="qnet-send">Enviar</button>
     </div>
   </div>
 
   <footer class="site-footer">
-    <small>BioCircuit Learning — Proyecto educativo. © Diseñado por Javier</small>
+    <small>QNet Learning — Proyecto educativo. © Diseñado por Javier</small>
   </footer>
 
   <script src="script.js"></script>
   <script src="chatbot.js"></script>
-</body><!-- CHATBOT NUEVO -->
-<div id="chatbot-bubble">💬</div>
-
-<div id="chatbot-box">
-    <div id="chatbot-header">Asistente</div>
-    <div id="chatbot-messages"></div>
-    <input type="text" id="chatbot-input" placeholder="Escribe aquí..." />
-</div>
+</body>
+</html>
