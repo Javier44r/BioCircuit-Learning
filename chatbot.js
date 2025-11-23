@@ -1,56 +1,56 @@
-/* Chatbot: BioCircuit Helper — estilo futurista, respuestas técnicas por palabras clave */
-const chatBox = document.getElementById("chatBox");
-const messages = document.getElementById("chatMessages");
-const input = document.getElementById("chatInput");
 const toggle = document.getElementById("chatToggle");
+const box = document.getElementById("chatBox");
 const closeBtn = document.getElementById("closeChat");
-const sendBtn = document.getElementById("chatSend");
+const input = document.getElementById("chatInput");
+const send = document.getElementById("chatSend");
+const messages = document.getElementById("chatMessages");
 
 toggle.addEventListener("click", () => {
-  chatBox.classList.toggle("hidden");
-  chatBox.setAttribute("aria-hidden", chatBox.classList.contains("hidden"));
-  // primera bienvenida
-  if(!chatBox.classList.contains("hidden") && messages.children.length===0){
-    botSay("Hola, soy BioCircuit Helper. Pregúntame por memristores, IMU, SLAM, latencia o topologías de red.");
+  box.classList.toggle("hidden");
+  box.setAttribute("aria-hidden", box.classList.contains("hidden"));
+  if (!box.classList.contains("hidden") && messages.children.length === 0) {
+    botSay("Hola, soy BioCircuit Helper. Te puedo explicar sobre memristores, IMU, SLAM y más.");
   }
 });
-closeBtn.addEventListener("click", () => {
-  chatBox.classList.add("hidden");
-  chatBox.setAttribute("aria-hidden", "true");
-});
-sendBtn.addEventListener("click", sendMsg);
-input.addEventListener("keypress", e=>{ if(e.key==='Enter') sendMsg(); });
 
-function append(who, text){
+closeBtn.addEventListener("click", () => {
+  box.classList.add("hidden");
+  box.setAttribute("aria-hidden", "true");
+});
+
+send.addEventListener("click", sendMsg);
+input.addEventListener("keypress", e => {
+  if (e.key === "Enter") sendMsg();
+});
+
+function append(who, text) {
   const p = document.createElement("p");
-  p.className = who === 'user' ? 'user' : 'bot';
-  p.innerHTML = `<strong>${who==='user' ? 'Tú' : 'BioCircuit'}:</strong> ${text}`;
+  p.className = who;
+  p.innerHTML = `<strong>${who === 'user' ? 'Tú' : 'BioCircuit'}:</strong> ${text}`;
   messages.appendChild(p);
   messages.scrollTop = messages.scrollHeight;
 }
 
-function botSay(text){
+function botSay(text) {
   append('bot', text);
 }
 
-function sendMsg(){
+function sendMsg() {
   const txt = input.value.trim();
-  if(!txt) return;
+  if (!txt) return;
   append('user', txt);
   input.value = '';
-  setTimeout(()=> {
-    const r = answerFor(txt.toLowerCase());
-    botSay(r);
-  }, 420);
+  setTimeout(() => {
+    botSay(getAnswer(txt.toLowerCase()));
+  }, 400);
 }
 
-function answerFor(msg){
-  if(msg.includes("hola") || msg.includes("buenas")) return "¡Hola! ¿Quieres saber sobre sensores, memristores o comunicaciones de baja latencia?";
-  if(msg.includes("memristor")) return "Un memristor es un elemento que retiene resistencia en función de la corriente previa; útil para memorias y sinapsis en hardware bioinspirado.";
-  if(msg.includes("imu") || msg.includes("giroscopio")) return "IMU combina acelerómetro y giroscopio para estimar orientación y movimiento con alta frecuencia.";
-  if(msg.includes("slam")) return "SLAM (Simultaneous Localization and Mapping) permite mapear el entorno y localizar el dispositivo en tiempo real — vital para AR.";
-  if(msg.includes("latencia") || msg.includes("lag")) return "La latencia extremo-a-extremo debe ser lo más baja posible (ideal <20 ms) para experiencias inmersivas sin mareo.";
-  if(msg.includes("topolog") || msg.includes("red")) return "La topología define la interconexión y resiliencia de las unidades; redes distribuidas y redundantes mejoran robustez.";
-  if(msg.includes("gpu") || msg.includes("render")) return "GPUs/accelerators permiten tasas de frames altas; combinar procesamiento local (edge) reduce latencia.";
-  return "Buena pregunta — te puedo ayudar con palabras clave: 'memristor', 'IMU', 'SLAM', 'latencia', 'topología'.";
+function getAnswer(msg) {
+  if (msg.includes("hola")) return "¡Hola! Pregúntame lo que quieras sobre hardware bioinspirado.";
+  if (msg.includes("memristor")) return "Un memristor es un dispositivo que puede recordar su resistencia en función del pasado eléctrico.";
+  if (msg.includes("imu") || msg.includes("acelerómetro")) return "El IMU combina acelerómetro y giroscopio para detectar movimiento y orientación.";
+  if (msg.includes("slam")) return "SLAM es la técnica para mapear entornos y localizar dispositivos usando sensores.";
+  if (msg.includes("latencia")) return "La latencia baja es clave en dispositivos inmersivos para evitar mareos.";
+  if (msg.includes("topología")) return "La topología describe cómo están conectadas las unidades en una red biocircuital.";
+  return "Disculpa, no tengo esa información aún. Intenta preguntar por ‘memristor’, ‘IMU’, ‘SLAM’ u ‘otras redes’.";
 }
