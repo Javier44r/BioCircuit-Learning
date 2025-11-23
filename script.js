@@ -108,3 +108,43 @@ function resetQuiz() {
   document.getElementById("startPanel").classList.remove("hidden");
   document.getElementById("studentName").value = "";
 }
+// === CHATBOT ===
+const button = document.getElementById("chatbot-button");
+const windowChat = document.getElementById("chatbot-window");
+const closeChat = document.getElementById("close-chatbot");
+const messagesChat = document.getElementById("chatbot-messages");
+const inputChat = document.getElementById("chatbot-input");
+
+button.addEventListener("click", () => {
+    windowChat.classList.toggle("hidden");
+});
+
+closeChat.addEventListener("click", () => {
+    windowChat.classList.add("hidden");
+});
+
+inputChat.addEventListener("keypress", (e) => {
+    if (e.key === "Enter" && inputChat.value.trim() !== "") {
+        addMessage("Tú", inputChat.value);
+        botReply(inputChat.value);
+        inputChat.value = "";
+    }
+});
+
+function addMessage(sender, text) {
+    messagesChat.innerHTML += `<p><strong>${sender}:</strong> ${text}</p>`;
+    messagesChat.scrollTop = messagesChat.scrollHeight;
+}
+
+function botReply(question) {
+    let answer = "Interesante... pero aún estoy aprendiendo 😊";
+
+    if (question.includes("hola")) answer = "¡Hola! Soy ChatBio, ¿en qué te ayudo?";
+    if (question.includes("neuro")) answer = "Los sistemas neuroinspirados imitan funciones del cerebro.";
+    if (question.includes("hardware")) answer = "El hardware neuromórfico se basa en arquitectura bioinspirada.";
+    if (question.includes("redes")) answer = "Las redes biocircutales funcionan como neuronas conectadas.";
+
+    setTimeout(() => {
+        addMessage("ChatBio", answer);
+    }, 600);
+}
