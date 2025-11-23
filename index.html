@@ -8,58 +8,41 @@
 </head>
 <body>
 
-  <!-- HERO -->
   <header class="hero">
     <div class="hero-content">
       <h1>BioCircuit Learning</h1>
-      <p class="tag">Hardware bio-inspirado y redes biocircuitales — laboratorio educativo</p>
+      <p class="tag">Hardware bio-inspirado y redes biocircuitales</p>
       <div class="hero-media">
-        <!-- Video hero: ruta local subida por ti -->
         <video class="hero-video" autoplay muted loop playsinline>
           <source src="/mnt/data/Screenrecorder-2025-11-22-17-37-01-138.mp4" type="video/mp4">
-          <!-- Si no se carga el video, se muestra la imagen alternativa -->
-          Tu navegador no soporta video.
         </video>
       </div>
     </div>
   </header>
 
-  <!-- MAIN -->
   <main class="main container">
-
-    <!-- INTRO -->
     <section class="card intro">
       <h2>Introducción</h2>
-      <p>
-        Los sistemas bioinspirados (hardware que imita procesos biológicos) combinan arquitectura física y redes 
-        que funcionan similar a tejidos neuronales. Estos dispositivos y redes permiten soluciones eficientes en 
-        energía y procesamiento para tareas de reconocimiento, control y robótica.
-      </p>
-      <p class="muted">
-        Este recurso ofrece una breve explicación, un cuestionario interactivo de 10 preguntas y un asistente (chatbot) 
-        que responde dudas técnicas sobre componentes y redes biocircuitales.
-      </p>
+      <p>Los sistemas bioinspirados combinan hardware y redes que imitan procesos neuronales para resolver problemas de forma eficiente.</p>
+      <p class="muted">Este recurso te permite aprender, poner a prueba tus conocimientos con un cuestionario y consultar dudas con un asistente.</p>
     </section>
 
-    <!-- AUTHOR -->
     <section class="card author">
       <p class="byline">Diseñado por el profesional <strong>Javier</strong></p>
     </section>
 
-    <!-- QUIZ -->
     <section class="card quiz">
-      <h2>Cuestionario: Comprueba tus conocimientos</h2>
-
+      <h2>Cuestionario</h2>
       <div id="startPanel" class="start-panel">
-        <input id="studentName" type="text" placeholder="Ingresa tu nombre" aria-label="Nombre del estudiante">
+        <input id="studentName" type="text" placeholder="Ingresa tu nombre" />
         <div class="controls">
           <label for="numQ">Preguntas:</label>
-          <select id="numQ"><option value="10" selected>10</option><option value="5">5</option></select>
+          <select id="numQ"><option value="10">10</option><option value="5">5</option></select>
           <button id="startBtn">Iniciar</button>
         </div>
       </div>
 
-      <div id="quizPanel" class="quiz-panel hidden" aria-live="polite">
+      <div id="quizPanel" class="quiz-panel hidden">
         <div class="progress">Pregunta <span id="qIndex">1</span> / <span id="qTotal">10</span></div>
         <h3 id="qText" class="question"></h3>
         <div id="options" class="options"></div>
@@ -75,52 +58,27 @@
         <button id="retryBtn">Volver a intentar</button>
       </div>
     </section>
-
   </main>
 
-  <!-- CHATBOT (FUTURISTA) -->
-  <div id="chatToggle" class="chat-toggle" aria-hidden="false">🤖</div>
-  <aside id="chatBox" class="chatbox hidden" aria-hidden="true">
-    <header class="chat-header">
-      <div>BioCircuit Helper</div>
-      <button id="closeChat" class="close">✕</button>
-    </header>
-    <main id="chatMessages" class="chat-messages" role="log" aria-live="polite"></main>
-    <footer class="chat-input">
-      <input id="chatInput" type="text" placeholder="Pregúntame sobre sensores, memristores, topologías..." />
-      <button id="chatSend">Enviar</button>
-    </footer>
-  </aside>
+  <div class="chatbot-container">
+    <div class="chatbot-box" id="chatBox">
+      <header class="chat-header">
+        <div>BioCircuit Helper</div>
+        <button id="closeChat" class="close">✕</button>
+      </header>
+      <main id="chatMessages" class="chat-messages" role="log" aria-live="polite"></main>
+      <footer class="chat-input">
+        <input id="chatInput" type="text" placeholder="Pregunta algo..." />
+        <button id="chatSend">Enviar</button>
+      </footer>
+    </div>
+  </div>
 
-  <!-- FOOTER -->
   <footer class="site-footer">
-    <small>BioCircuit Learning — Proyecto educativo (diseño exclusivo). © Diseñado por el profesional Javier</small>
+    <small>BioCircuit Learning — Proyecto educativo. © Diseñado por Javier</small>
   </footer>
 
   <script src="script.js"></script>
   <script src="chatbot.js"></script>
-</body> /* --- Contenedor del chatbot --- */
-.chatbot-container {
-    position: fixed;     /* Fijo en pantalla */
-    bottom: 20px;        /* Separado de abajo */
-    right: 20px;         /* Separado de la derecha */
-    width: 350px;        /* Ancho normal */
-    max-width: 90%;
-    z-index: 9999;       /* Encima de todo pero sin molestar */
-}
-
-/* --- Caja del chatbot --- */
-.chatbot-box {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    overflow: hidden;
-}
-
-/* --- Si usas un iframe para el chatbot --- */
-.chatbot-container iframe {
-    width: 100%;
-    height: 500px;       /* Ajusta a lo que tú quieras */
-    border: none;
-}
-        </html>
+</body>
+  </html>
