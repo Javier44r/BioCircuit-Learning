@@ -1,56 +1,50 @@
-const toggle = document.getElementById("chatToggle");
-const box = document.getElementById("chatBox");
-const closeBtn = document.getElementById("closeChat");
-const input = document.getElementById("chatInput");
-const send = document.getElementById("chatSend");
-const messages = document.getElementById("chatMessages");
+// chatbot.js — QNet Helper (simple, palabras clave)
+const bubble = document.getElementById("qnet-chat-bubble");
+const win = document.getElementById("qnet-chat-window");
+const closeBtn = document.getElementById("qnet-close");
+const messages = document.getElementById("qnet-messages");
+const input = document.getElementById("qnet-input");
+const sendBtn = document.getElementById("qnet-send");
 
-toggle.addEventListener("click", () => {
-  box.classList.toggle("hidden");
-  box.setAttribute("aria-hidden", box.classList.contains("hidden"));
-  if (!box.classList.contains("hidden") && messages.children.length === 0) {
-    botSay("Hola, soy BioCircuit Helper. Te puedo explicar sobre memristores, IMU, SLAM y más.");
-  }
-});
-
-closeBtn.addEventListener("click", () => {
-  box.classList.add("hidden");
-  box.setAttribute("aria-hidden", "true");
-});
-
-send.addEventListener("click", sendMsg);
-input.addEventListener("keypress", e => {
-  if (e.key === "Enter") sendMsg();
-});
-
-function append(who, text) {
+function appendMsg(kind, text){
   const p = document.createElement("p");
-  p.className = who;
-  p.innerHTML = `<strong>${who === 'user' ? 'Tú' : 'BioCircuit'}:</strong> ${text}`;
+  p.className = kind;
+  p.innerHTML = `<strong>${kind==='user' ? 'Tú' : 'QNet'}:</strong> ${text}`;
   messages.appendChild(p);
   messages.scrollTop = messages.scrollHeight;
 }
 
-function botSay(text) {
-  append('bot', text);
-}
+bubble.addEventListener("click", () => {
+  // abrir ventana (si ya existe, alterna)
+  if(win.classList.contains("hidden")){
+    win.classList.remove("hidden");
+    // saludo inicial si vacío
+    if(messages.children.length === 0) appendMsg('bot', "Hola — soy QNet Helper. Pregunta por QKD, qubits, entrelazamiento o latencia.");
+  } else {
+    win.classList.add("hidden");
+  }
+});
 
-function sendMsg() {
+closeBtn.addEventListener("click", () => win.classList.add("hidden"));
+sendBtn.addEventListener("click", sendMsg);
+input.addEventListener("keypress", (e)=>{ if(e.key==='Enter') sendMsg(); });
+
+function sendMsg(){
   const txt = input.value.trim();
-  if (!txt) return;
-  append('user', txt);
+  if(!txt) return;
+  appendMsg('user', txt);
   input.value = '';
-  setTimeout(() => {
-    botSay(getAnswer(txt.toLowerCase()));
-  }, 400);
+  setTimeout(()=> {
+    appendMsg('bot', respond(txt.toLowerCase()));
+  }, 350);
 }
 
-function getAnswer(msg) {
-  if (msg.includes("hola")) return "¡Hola! Pregúntame lo que quieras sobre hardware bioinspirado.";
-  if (msg.includes("memristor")) return "Un memristor es un dispositivo que puede recordar su resistencia en función del pasado eléctrico.";
-  if (msg.includes("imu") || msg.includes("acelerómetro")) return "El IMU combina acelerómetro y giroscopio para detectar movimiento y orientación.";
-  if (msg.includes("slam")) return "SLAM es la técnica para mapear entornos y localizar dispositivos usando sensores.";
-  if (msg.includes("latencia")) return "La latencia baja es clave en dispositivos inmersivos para evitar mareos.";
-  if (msg.includes("topología")) return "La topología describe cómo están conectadas las unidades en una red biocircuital.";
-  return "Disculpa, no tengo esa información aún. Intenta preguntar por ‘memristor’, ‘IMU’, ‘SLAM’ u ‘otras redes’.";
+function respond(msg){
+  if(msg.includes("hola") || msg.includes("buenas")) return "¡Hola! ¿Qué quieres saber sobre redes cuánticas?";
+  if(msg.includes("qkd") || msg.includes("clave")) return "QKD (Quantum Key Distribution) es un método para compartir claves con seguridad basada en la física.";
+  if(msg.includes("qubit")) return "Un qubit es la unidad básica de información cuántica: puede estar en superposición.";
+  if(msg.includes("entrelaz") || msg.includes("entrelazamiento")) return "El entrelazamiento conecta qubits de forma que la medición en uno afecta al otro instantáneamente.";
+  if(msg.includes("latencia")) return "La latencia en redes cuánticas depende de la sincronización y de la eficiencia de los enlaces fotónicos.";
+  if(msg.includes("fibra") || msg.includes("fotón")) return "A menudo se usan fotones en fibra óptica para transmitir estados cuánticos a distancia.";
+  return "Buena pregunta — intenta con palabras clave: 'QKD', 'qubit', 'entrelazamiento', 'latencia'.";
 }
